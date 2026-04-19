@@ -1,0 +1,26 @@
+﻿using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+
+namespace CredSort.Api.Filters
+{
+    public class TenantHeaderFilter : IOperationFilter
+    {
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        {
+            if (operation.Parameters == null)
+                operation.Parameters = new List<OpenApiParameter>();
+
+            operation.Parameters.Add(new OpenApiParameter
+            {
+                Name = "X-Tenant-Id",
+                In = ParameterLocation.Header,
+                Required = false,
+                Schema = new OpenApiSchema
+                {
+                    Type = "string",
+                    Format = "uuid"
+                }
+            });
+        }
+    }
+}

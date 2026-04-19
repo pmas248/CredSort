@@ -23,6 +23,8 @@ namespace CredSort.Api.Models
         [Required]
         public Guid TenantId { get; set; }
 
+        public Tenant? Tenant { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
